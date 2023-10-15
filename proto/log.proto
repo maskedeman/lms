@@ -1,0 +1,46 @@
+syntax="proto3";
+option  go_package="./proto";
+
+import "google/protobuf/timestamp.proto";
+
+
+service LogService{
+    rpc SaveLog(SaveLogRequest) returns (SaveLogResponse){}
+    //rpc Retrieve(RetrieveLogRequest) returns(RetrieveLogResponse){}
+}
+
+
+enum Priority{
+    Low=0;
+    Medium=1;
+    High=2;
+    Critical=3;
+}
+
+message Log {
+string id=1;
+string name=2;
+Priority priority=3;
+string info=4;
+google.protobuf.Timestamp timestamp=5;
+
+}
+
+
+message SaveLogRequest{
+string id=1;
+}
+message SaveLogResponse{
+    string id=1;
+    string name=2;
+    Priority priority=3;
+    uint64 info=4;
+    google.protobuf.Timestamp timestamp=5;
+}
+
+// message RetrieveLogRequest{
+
+// }
+// message RetrieveLogResponse{
+
+// }
